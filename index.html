@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <title>Our Funky HTML Page</title>
+    <meta name="description" content="Our first page" />
+    <meta name="keywords" content="html tutorial template" />
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body onload=" displayPlayer(); displayGrid()">
+    
+    <div class="center">
+      <div class="active-player">
+        <p id="player"></p>
+      </div>
+      <div id="tic-tac-toe"></div>
+      <div class="coordinates"><input id="column-coordinate-input" placeholder="Column number"></input><input id="row-coordinate-input" placeholder="Row number"></input></div>
+      <div class="move-button"><button id="button" onclick="moveMaker()">place</button></div>
+      <script src="script.js"></script>
+  </div>
+  </body>
+</html>
