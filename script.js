@@ -28,9 +28,9 @@ function moveMaker() {
       alert("Only enter values between 1 and 3");
     } else {
       let isFieldEmpty = validateEmptyField(column, row);
-      if (isFieldEmpty === false){
-        alert("This cell is taken. Please, pick an empty cell.")
-      } else  {
+      if (isFieldEmpty === false) {
+        alert("This cell is taken. Please, pick an empty cell.");
+      } else {
         pick(row, column, currentPlayer);
         displayGrid();
         if (checkWinner() != null) {
@@ -49,7 +49,7 @@ function moveMaker() {
     }
   }
 }
-      
+
 function checkWinner() {
   rowScore = checkScoreRows();
   if (rowScore != null) {
@@ -70,15 +70,17 @@ function checkWinner() {
   return null;
 }
 function printWinner() {
-  document.querySelector("#player").innerHTML = `Player ${currentPlayer} wins.<br>Press the button to restart.`;
+  document.querySelector(
+    "#player"
+  ).innerHTML = `Player ${currentPlayer} wins.<br>Press the button to restart.`;
 }
 function printDraw() {
   document.querySelector("#player").innerHTML = `There is a draw`;
 }
-function reloadPage(){
+function reloadPage() {
   location.reload();
 }
-function swapButtonOnclickToReload(){
+function swapButtonOnclickToReload() {
   let button = document.querySelector("button");
   button.innerHTML = "Reload game";
   button.onclick = reloadPage;
@@ -180,7 +182,9 @@ function checkDraw() {
 }
 
 function displayPlayer() {
-  document.querySelector("#player").innerHTML = `This move belongs to Player ${currentPlayer}`;
+  document.querySelector(
+    "#player"
+  ).innerHTML = `This move belongs to Player ${currentPlayer}`;
 }
 
 function pick(row, column, symbol) {
@@ -196,19 +200,19 @@ function validateCoordinates(column, row) {
 }
 
 function validateIsNumber(column, row) {
-    if (isNaN(column) === true) {
-     return true
-    } else if (isNaN(row) === true){
-      return true
-    }
+  if (isNaN(column) === true) {
+    return true;
+  } else if (isNaN(row) === true) {
+    return true;
   }
+}
 
-function validateEmptyField(column, row){
- if (ticTacToe[row][column] === EMPTY_CELL){
-  return true;
- } else {
-  return false;
- }
+function validateEmptyField(column, row) {
+  if (ticTacToe[row][column] === EMPTY_CELL) {
+    return true;
+  } else {
+    return false;
+  }
 }
 function switchPlayer() {
   if (currentPlayer == `X`) {
@@ -236,7 +240,7 @@ function prepareBody() {
     body += `<tr>`;
     body += `<td id="row-number"> ${row + 1}</td>`;
     for (let column = 0; column < ticTacToe.length; column++) {
-      // preparePlaceSymbolFunction(row, column);
+      preparePlaceSymbolFunction(row, column);
       body +=
         `<td class="field" id="cell-` +
         row +
@@ -265,64 +269,10 @@ function prepareTable() {
 function displayGrid() {
   document.querySelector("#tic-tac-toe").innerHTML = prepareTable();
 }
-// function preparePlaceSymbolFunction(row, column) {
-//   return (
-//     `placeSymbol` +
-//     row +
-//     column +
-//     `(){
-//     document.querySelector("#row-coordinate-input").value =` +
-//     row +
-//     `;` +
-//     `document.querySelector("#column-coordinate-input").value =` +
-//     column +
-//     `;` +
-//     `moveMaker()` +
-//     `}`
-//   );
-// }
-function placeSymbol00() {
-  document.querySelector("#row-coordinate-input").value = 1;
-  document.querySelector("#column-coordinate-input").value = 1;
-  moveMaker();
-}
-function placeSymbol01() {
-  document.querySelector("#row-coordinate-input").value = 1;
-  document.querySelector("#column-coordinate-input").value = 2;
-  moveMaker();
-}
-function placeSymbol02() {
-  document.querySelector("#row-coordinate-input").value = 1;
-  document.querySelector("#column-coordinate-input").value = 3;
-  moveMaker();
-}
-function placeSymbol10() {
-  document.querySelector("#row-coordinate-input").value = 2;
-  document.querySelector("#column-coordinate-input").value = 1;
-  moveMaker();
-}
-function placeSymbol11() {
-  document.querySelector("#row-coordinate-input").value = 2;
-  document.querySelector("#column-coordinate-input").value = 2;
-  moveMaker();
-}
-function placeSymbol12() {
-  document.querySelector("#row-coordinate-input").value = 2;
-  document.querySelector("#column-coordinate-input").value = 3;
-  moveMaker();
-}
-function placeSymbol20() {
-  document.querySelector("#row-coordinate-input").value = 3;
-  document.querySelector("#column-coordinate-input").value = 1;
-  moveMaker();
-}
-function placeSymbol21() {
-  document.querySelector("#row-coordinate-input").value = 3;
-  document.querySelector("#column-coordinate-input").value = 2;
-  moveMaker();
-}
-function placeSymbol22() {
-  document.querySelector("#row-coordinate-input").value = 3;
-  document.querySelector("#column-coordinate-input").value = 3;
-  moveMaker();
+function preparePlaceSymbolFunction(row, column) {
+  window[`placeSymbol` + row + column] = function () {
+    document.querySelector("#row-coordinate-input").value = row + 1;
+    document.querySelector("#column-coordinate-input").value = column + 1;
+    moveMaker();
+  };
 }
