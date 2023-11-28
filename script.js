@@ -16,6 +16,31 @@ const SIGN_X = "X";
 const SIGN_O = "O";
 let currentPlayer = SIGN_X;
 
+function playAgainstComputer() {
+  setTimeout(function () {
+    let column = Math.floor(Math.random() * 3);
+    let row = Math.floor(Math.random() * 3);
+    while (validateEmptyField(column, row) === false) {
+      column = Math.floor(Math.random() * 3);
+      row = Math.floor(Math.random() * 3);
+    }
+    pick(row, column, currentPlayer);
+    displayGrid();
+    if (checkWinner() != null) {
+      swapButtonOnclickToReload();
+      printWinner();
+    } else {
+      if (checkDraw() === true) {
+        swapButtonOnclickToReload();
+        printDraw();
+      } else {
+        switchPlayer();
+        displayPlayer();
+      }
+    }
+  }, 1000);
+}
+
 function moveMaker() {
   let column = document.querySelector("#column-coordinate-input").value - 1;
   let row = document.querySelector("#row-coordinate-input").value - 1;
@@ -43,6 +68,7 @@ function moveMaker() {
           } else {
             switchPlayer();
             displayPlayer();
+            playAgainstComputer();
           }
         }
       }
